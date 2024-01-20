@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexey Obukhov</title>
+    <title>View/Download CV - Alexey Obukhov</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Alexey Obukhov</h1>
-  </header>
+    <header>
+        <h1>View/Download CV - Alexey Obukhov</h1>
+    </header>
     <main>
-      <p>Welcome to my website! Here you can learn more about my experience and skills.</p>
-      <p>View my CV: <a href="cv.php" target="_blank">View CV</a></p>
-      <p>Download my CV: <a href="download.php" target="_blank" download>Download CV</a></p>
-      <p>You can also connect with me on <a href="https://www.linkedin.com/in/alexeyobukhov/">LinkedIn</a>.</p>
-      <!-- Additional HTML code for your website goes here -->
+        <!-- Include the content of your CV or any viewer plugin here -->
+        <!-- Example: Embed PDF viewer -->
+        <iframe id="pdfViewer" src="files/cv.pdf" width="100%" height="600px"></iframe>
+
+        <!-- Download button with JavaScript -->
+        <button id="downloadButton">Download CV</button>
     </main>
     <div id="footer">
-      <p>&copy; <span id="currentYear"></span> Alexey Obukhov</p>
+        <p>&copy; <span id="currentYear"></span> Alexey Obukhov</p>
     </div>
 
     <script>
@@ -27,6 +27,19 @@
 
         // Update the content of the 'currentYear' span element
         document.getElementById('currentYear').textContent = currentYear;
+
+        // Download button functionality
+        document.getElementById('downloadButton').addEventListener('click', function() {
+            // Generate a filename with the current date
+            var currentDate = new Date().toISOString().split('T')[0];
+            var filename = 'Alexey_Obukhov_cv_' + currentDate + '.pdf';
+
+            // Create a temporary link and trigger the download
+            var link = document.createElement('a');
+            link.href = 'files/cv.pdf';
+            link.download = filename;
+            link.click();
+        });
     </script>
 </body>
 </html>
