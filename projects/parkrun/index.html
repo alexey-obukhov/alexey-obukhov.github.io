@@ -3,45 +3,39 @@
 <head>
   <!-- AR.js by @jerome_etienne - github: https://github.com/jeromeetienne/ar.js - info: https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf -->
   <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
-<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
   <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.8.4/dist/aframe-extras.min.js"></script>
   <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
   <script>
-AFRAME.registerComponent('vidhandler', {
-  // ...
-  init: function () {
-    // Set up initial state and variables.
-    this.toggle = false;
-    this.vid = document.querySelector("#vid")
-    this.vid.pause();
-  },
-  tick:function(){
-    
-if(this.el.object3D.visible == true){
-  if(!this.toggle){
-     this.toggle = true;
-     this.vid.play();
-    }
-  }else{
-  this.toggle = false;
-    this.vid.pause();
-    }
-  }
-});
+    AFRAME.registerComponent('vidhandler', {
+      // ...
+      init: function () {
+        // Set up initial state and variables.
+        this.vid = document.querySelector("#vid");
+        this.vid.setAttribute('position', '0 0 -5');
+        this.toggle = false;
+        this.vid.pause();
+      }
+    });
   </script>
-<script>
-  AFRAME.registerComponent('rotation-listener', {
-    tick: function () {
-      var cameraEl = this.el.sceneEl.camera.el;
-      var cameraRotation = cameraEl.getAttribute('rotation');
-      var videoEl = document.querySelector('#vid');
-      videoEl.setAttribute('rotation', {x: cameraRotation.x, y: 0, z: cameraRotation.z});
-      videoEl.setAttribute('position', {x: cameraEl.object3D.position.x, y: cameraEl.object3D.position.y, z: cameraEl.object3D.position.z});
-    }
-  });
+  <script>
+    AFRAME.registerComponent('rotation-listener', {
+      tick: function () {
+        if (this.el.object3D.visible) {
+          this.vid.setAttribute('position', '0 0 -5');
+          this.vid.setAttribute('material', 'transparent: false; opacity: 1');
+          if (!this.toggle) {
+            this.toggle = true;
+            this.vid.play();
+          }
+        } else {
+          this.toggle = false;
+          this.vid.pause();
+          this.vid.setAttribute('material', 'transparent: true; opacity: 0');
+        }
+      }
+    });
   </script>
-  
-  
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
