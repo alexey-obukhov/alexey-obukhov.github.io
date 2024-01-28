@@ -15,6 +15,7 @@
                             
                         // Marker found.
                         marker.addEventListener('markerFound', function() {
+                            console.log("Marker found event triggered");
                             this.vid = document.querySelector("#vid");
                             this.vid.play();
                             
@@ -33,17 +34,20 @@
                             // HTML button play.
                             document.getElementById("play").addEventListener('click', function() {
                                 this.vid.play();
+                                console.log("play pressed");
                             }.bind(this));
                             
                             // HTML button pause.
                             document.getElementById("pause").addEventListener('click', function() {
                                 this.vid.pause();
+                                console.log("pause pressed");
                             }.bind(this));
                         }.bind(this));
                             
                         // Marker lost.
                         marker.addEventListener('markerLost', function() {
                             this.vid.pause();
+                            console.log("markerLost");
                             this.vid.currentTime = 0;
                         }.bind(this));
                     }
