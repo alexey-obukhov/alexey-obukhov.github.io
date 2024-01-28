@@ -46,8 +46,11 @@
       <video id="vid" src="assets/asset.mp4" loop="true" crossorigin>
     </a-assets>
     <a-marker id="memarker" preset="hiro" vidhandler>
-      <a-plane position='0 0 0' scale="2 2 2" width="2" rotation="-90 0 0" material='transparent:true;opacity: 0.7;src:#vid'></a-plane>
+      <a-plane position='0 0 -5' scale="2 2 2" width="2" rotation="-90 0 0" material='transparent:true;opacity: 0.7;src:#vid'></a-plane>
     </a-marker>
+    <a-entity position="0 0 0">
+      <a-video src="#vid" width="9" height="16" position="0 0 -15"></a-video>
+    </a-entity>
   </a-scene>
 </body>
 </html>
