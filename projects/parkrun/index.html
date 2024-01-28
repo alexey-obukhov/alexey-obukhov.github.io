@@ -42,8 +42,8 @@
       adjustSize: function () {
         var marker = this.el.object3D;
         var video = document.querySelector("#vid");
-        var videoWidth = video.videoWidth;
-        var videoHeight = video.videoHeight;
+        var videoWidth = window.innerWidth;
+        var videoHeight = window.innerHeight;
         var aspectRatio = videoWidth / videoHeight;
         var scale = 1;
 
@@ -53,7 +53,6 @@
         } else {
           scale = aspectRatio;
         }
-
         this.el.setAttribute('scale', scale + ' ' + scale + ' ' + scale);
       },
       resetSize: function () {
