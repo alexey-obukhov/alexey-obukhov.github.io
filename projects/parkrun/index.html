@@ -1,79 +1,124 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <meta charset="utf-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <title>Agumented Reality - Test</title>
+        <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
+        
         <script>
-            AFRAME.registerComponent('videohandler', {
-                init: function () {
-                    var marker = this.el;
-                    this.vid = document.getElementById("vid");
-
-                    marker.addEventListener('markerFound', function () {
-                        this.toggle = true;
-                        this.vid.play();
-                    }.bind(this));
-
-                    marker.addEventListener('markerLost', function () {
-                        this.toggle = false;
-                        this.vid.pause();
-                    }.bind(this));
-                },
-            });
+            window.onload = function() {
+                AFRAME.registerComponent('videohandler', {
+                    init: function() {
+                        var marker = this.el;
+                            
+                        // Marker found.
+                        marker.addEventListener('markerFound', function() {
+                            this.vid = document.querySelector("#vid");
+                            this.vid.play();
+                            
+                            // Make the video act the same way on iOS and Android (only playable by user interaction).
+                            this.vid.pause();
+                            this.vid.currentTime = 0;
+                            
+                            // AR button element.
+                            this.but = document.querySelector("#but");
+                            
+                            // I've tried this to make the button ar element interactable but it doesn't work.
+                            this.but.addEventListener('click', function() {
+                                this.vid.play();
+                            }.bind(this));
+                            
+                            // HTML button play.
+                            document.getElementById("play").addEventListener('click', function() {
+                                this.vid.play();
+                            }.bind(this));
+                            
+                            // HTML button pause.
+                            document.getElementById("pause").addEventListener('click', function() {
+                                this.vid.pause();
+                            }.bind(this));
+                        }.bind(this));
+                            
+                        // Marker lost.
+                        marker.addEventListener('markerLost', function() {
+                            this.vid.pause();
+                            this.vid.currentTime = 0;
+                        }.bind(this));
+                    }
+                });
+            };
         </script>
+
+        <style>
+            .button {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 7px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 12px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 12px;
+                border: 2px solid rgba(9, 148, 28, 0.541);
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+        </style>
+
     </head>
 
-    <body style="margin: 0; overflow: hidden;">
+    <body style='margin: 0px; overflow: hidden;'>
         <a-scene
-            vr-mode-ui="enabled: false"
-            loading-screen="enabled: false;"
-            arjs='sourceType: webcam; debugUIEnabled: false;'
-            id="scene"
-            embedded
-            gesture-detector
-        >
+            vr-mode-ui="enabled: false;"
+            render='antialias: true; alpha: true; precision: medium;'
+            embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false; patternRatio: 0.75; maxDetectionRate: 60'>
             <a-assets>
-                <video
-                    id="vid"
-                    src="assets/asset.mp4"
-                    preload="auto"
-                    response-type="arraybuffer"
-                    loop
-                    crossorigin
-                    webkit-playsinline
-                    muted
-                    playsinline
-                ></video>
+      
+                <video src="assets/asset.mp4"
+                    preload="auto" id="vid" response-type="arraybuffer" 
+                    crossorigin webkit-playsinline autoplay="false" playsinline>
+                </video>
             </a-assets>
 
-            <a-marker
-                type="pattern"
-                preset="custom"
-                url="assets/marker.patt"
-                videohandler
-                smooth="true"
-                smoothCount="10"
-                smoothTolerance="0.01"
-                smoothThreshold="5"
-                raycaster="objects: .clickable"
-                emitevents="true"
-                cursor="fuse: false; rayOrigin: mouse;"
-                id="markerA"
-            >
+            
+            <a-marker videohandler
+                preset='custom' type='pattern' url='marker_el.patt'                     
+                smooth="true" smoothCount="2" smoothTolerance="0.01" smoothThreshold="2">
+
                 <a-video
                     src="#vid"
-                    width="100%"
-                    height="1340px"
-                    position="0 0.1 0"
-                    rotation="0 0 0"
-                    class="clickable"
-                    gesture-handler
-                ></a-video>
+                    position='6 -10 0'
+                    rotation='-90 0 0'
+                    width='10'
+                    height='17.5'>
+                </a-video>
+                
+                <!-- The "button" in ar to display over the marker, I want it to be interactable to play the video. -->
+                <a-entity id="but"
+                    cursor="fuse: true; fuseTimeout: 1000;"
+                    position="0 0 0"
+                    rotation="-90 0 0"
+                    geometry="primitive: plane"
+                    scale="1.5 1.5 1.5"
+                    material="color: white; src: play_button.png; shader: flat; transparent: false;"
+                    visible="true">
+                </a-entity>
+
             </a-marker>
 
             <a-entity camera></a-entity>
+
         </a-scene>
+        
+        <!-- HTML buttons to play/pause video, I don't like this solution -->
+        <div style='position: fixed; bottom: 10px; width: 100%; text-align: center; z-index: 1;'>
+            <button class="button" id="play">Play</button>
+            <button class="button" id="pause">Pause</button>
+        </div>
+
     </body>
 </html>
