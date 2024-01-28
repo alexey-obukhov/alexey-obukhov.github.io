@@ -39,7 +39,7 @@
 
 <body style='margin : 0px; overflow: hidden;'>
   <div style='position: fixed; top: 10px; width:inherit; text-align: center; z-index: 1;'>
-    <a href="https://github.com/jeromeetienne/AR.js/" target="_blank">AR.js</a> - Check out the repository !
+    <a href="https://github.com/jeromeetienne/AR.js/" target="_blank">AR.js</a>
   </div>
   <a-scene rotation-listener embedded artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' >
     <a-assets>
@@ -49,8 +49,18 @@
       <a-plane position='0 0 -5' scale="2 2 2" width="2" rotation="-90 0 0" material='transparent:true;opacity: 0.7;src:#vid'></a-plane>
     </a-marker>
     <a-entity position="0 0 0">
-      <a-video src="#vid" width="9" height="16" position="0 0 -15"></a-video>
+      <a-video src="#vid" width="0.484" height="1" position="0 0 -15"></a-video>
     </a-entity>
   </a-scene>
+  <script>
+    var marker = document.querySelector("#memarker");
+    var video = document.querySelector("#vid");
+    marker.addEventListener('markerFound', function() {
+      video.play();
+    });
+    marker.addEventListener('markerLost', function() {
+      video.pause();
+    });
+  </script>
 </body>
 </html>
