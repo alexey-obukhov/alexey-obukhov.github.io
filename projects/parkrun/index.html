@@ -8,11 +8,8 @@
   <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
   <script>
     AFRAME.registerComponent('vidhandler', {
-      // ...
       init: function () {
-        // Set up initial state and variables.
         this.vid = document.querySelector("#vid");
-        this.vid.setAttribute('position', '0 0 -5');
         this.toggle = false;
         this.vid.pause();
       }
@@ -21,21 +18,23 @@
   <script>
     AFRAME.registerComponent('rotation-listener', {
       tick: function () {
+        var vid = document.querySelector("#vid");
         if (this.el.object3D.visible) {
-          this.vid.setAttribute('position', '0 0 -5');
-          this.vid.setAttribute('material', 'transparent: false; opacity: 1');
+          vid.setAttribute('material', 'transparent: false; opacity: 1');
           if (!this.toggle) {
             this.toggle = true;
-            this.vid.play();
+            vid.play();
           }
         } else {
           this.toggle = false;
-          this.vid.pause();
-          this.vid.setAttribute('material', 'transparent: true; opacity: 0');
+          vid.pause();
+          vid.setAttribute('material', 'transparent: true; opacity: 0');
         }
       }
     });
   </script>
+  
+  
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
@@ -46,11 +45,9 @@
     <a-assets>
       <video id="vid" src="assets/asset.mp4" loop="true" crossorigin>
     </a-assets>
-   
     <a-marker id="memarker" preset="hiro" vidhandler>
       <a-plane position='0 0 0' scale="2 2 2" width="2" rotation="-90 0 0" material='transparent:true;opacity: 0.7;src:#vid'></a-plane>
     </a-marker>
-
   </a-scene>
 </body>
 </html>
