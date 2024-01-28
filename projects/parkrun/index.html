@@ -49,15 +49,25 @@
       }
     });
   </script>
-  
-  
+  <script>
+    AFRAME.registerComponent('y-axis-movement', {
+      init: function () {
+        this.el.addEventListener('mousemove', this.handleMouseMove.bind(this));
+      },
+      handleMouseMove: function (event) {
+        var video = document.querySelector("#vid");
+        var yPosition = event.clientY; // Get the y-coordinate of the mouse cursor
+        video.object3D.position.y = yPosition; // Update the video's position on the y-axis
+      }
+    });
+  </script>
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
   <div style='position: fixed; top: 10px; width:inherit; text-align: center; z-index: 1;'>
     <a href="https://github.com/jeromeetienne/AR.js/" target="_blank"></a>
   </div>
-  <a-scene rotation-listener embedded artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' >
+  <a-scene rotation-listener embedded artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' y-axis-movement>
     <a-assets>
       <video id="vid" src="assets/asset.mp4" loop="true" autoplay crossorigin>
     </a-assets>
