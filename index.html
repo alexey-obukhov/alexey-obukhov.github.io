@@ -18,8 +18,12 @@
         <details>
             <summary>Recent Projects</summary>
             <p>This is a brief description of my most recent projects. Showcase my skills and accomplishments related to these projects.</p>
-            <iframe src="projects/parkrun/index.html" width="100%" height="100%"></iframe>
+            <iframe src="projects/parkrun/index.html" width="100%" height="100%" id="project_frame"></iframe>
             <!-- One can add more details, images, links, or any other relevant information here. -->
+            <script>
+                // Set the height of the iframe to match the screen resolution
+                document.getElementById('project_frame').style.height = window.innerHeight + 'px';
+            </script>
         </details>
     </main>
     <div id="footer">
