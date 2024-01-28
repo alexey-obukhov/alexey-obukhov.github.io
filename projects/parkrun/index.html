@@ -41,7 +41,19 @@
       },
       adjustSize: function () {
         var marker = this.el.object3D;
-        var scale = marker.userData.markerSize || 1; // Default scale is 1
+        var video = document.querySelector("#vid");
+        var videoWidth = video.videoWidth;
+        var videoHeight = video.videoHeight;
+        var aspectRatio = videoWidth / videoHeight;
+        var scale = 1;
+
+        // Adjust the scale based on the video resolution
+        if (aspectRatio > 1) {
+          scale = 1 / aspectRatio;
+        } else {
+          scale = aspectRatio;
+        }
+
         this.el.setAttribute('scale', scale + ' ' + scale + ' ' + scale);
       },
       resetSize: function () {
@@ -60,7 +72,7 @@
       <video id="vid" src="assets/asset.mp4" loop="true" autoplay crossorigin></video>
     </a-assets>
     <a-marker id="memarker" preset="hiro" vidhandler>
-      <a-plane position='0 0 -5' height="100%" rotation="-90 0 0" material='opacity:1; src:#vid' size-adjuster></a-plane>
+      <a-plane position='0 0 -5' rotation="-90 0 0" material='opacity:1; src:#vid' size-adjuster></a-plane>
     </a-marker>
   </a-scene>
   <script>
