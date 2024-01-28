@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <!-- AR.js by @jerome_etienne - github: https://github.com/jeromeetienne/ar.js - info: https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf -->
   <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
 <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
   <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.8.4/dist/aframe-extras.min.js"></script>
-
   <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
   <script>
 AFRAME.registerComponent('vidhandler', {
@@ -31,9 +29,7 @@ if(this.el.object3D.visible == true){
   }
 });
   </script>
-
 </head>
-
 
 <body style='margin : 0px; overflow: hidden;'>
   <div style='position: fixed; top: 10px; width:inherit; text-align: center; z-index: 1;'>
@@ -45,11 +41,9 @@ if(this.el.object3D.visible == true){
     </a-assets>
    
     <a-marker id="memarker" preset="hiro" vidhandler>
-      <a-plane position='1 2 -2' scale="2 2 2" width="2" rotation="-90 0 0" material='transparent:true;opacity: 0.7;src:#vid'></a-plane>
+      <a-plane position='0 0 -2' scale="2 2 2" width="2" rotation="-90 0 0" material='transparent:true;opacity: 0.7;src:#vid'></a-plane>
     </a-marker>
 
   </a-scene>
 </body>
-
-
 </html>
