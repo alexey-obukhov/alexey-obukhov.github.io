@@ -57,13 +57,5 @@ if(this.el.object3D.visible == true){
     </a-marker>
 
   </a-scene>
-AFRAME.registerComponent('rotation-listener', {
-  tick: function () {
-    var cameraEl = this.el.sceneEl.camera.el;
-    var cameraRotation = cameraEl.getAttribute('rotation');
-    var videoEl = document.querySelector('#vid');
-    videoEl.setAttribute('rotation', {x: cameraRotation.x, y: 0, z: cameraRotation.z});
-  }
-});
 </body>
 </html>
