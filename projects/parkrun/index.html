@@ -29,21 +29,41 @@ if(this.el.object3D.visible == true){
   }
 });
   </script>
+<script>
+  AFRAME.registerComponent('rotation-listener', {
+    tick: function () {
+      var cameraEl = this.el.sceneEl.camera.el;
+      var cameraRotation = cameraEl.getAttribute('rotation');
+      var videoEl = document.querySelector('#vid');
+      videoEl.setAttribute('rotation', {x: cameraRotation.x, y: 0, z: cameraRotation.z});
+    }
+  });
+  </script>
+  
+  
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
   <div style='position: fixed; top: 10px; width:inherit; text-align: center; z-index: 1;'>
     <a href="https://github.com/jeromeetienne/AR.js/" target="_blank">AR.js</a> - Check out the repository !
   </div>
-  <a-scene embedded artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' >
+  <a-scene rotation-listener embedded artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' >
     <a-assets>
       <video id="vid" src="assets/asset.mp4" loop="true" crossorigin>
     </a-assets>
    
     <a-marker id="memarker" preset="hiro" vidhandler>
-      <a-plane position='0 0 -2' scale="2 2 2" width="2" rotation="-90 0 0" material='transparent:true;opacity: 0.7;src:#vid'></a-plane>
+      <a-plane position='0 0 0' scale="2 2 2" width="2" rotation="-90 0 0" material='transparent:true;opacity: 0.7;src:#vid'></a-plane>
     </a-marker>
 
   </a-scene>
+AFRAME.registerComponent('rotation-listener', {
+  tick: function () {
+    var cameraEl = this.el.sceneEl.camera.el;
+    var cameraRotation = cameraEl.getAttribute('rotation');
+    var videoEl = document.querySelector('#vid');
+    videoEl.setAttribute('rotation', {x: cameraRotation.x, y: 0, z: cameraRotation.z});
+  }
+});
 </body>
 </html>
