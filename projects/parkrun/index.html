@@ -36,6 +36,7 @@ if(this.el.object3D.visible == true){
       var cameraRotation = cameraEl.getAttribute('rotation');
       var videoEl = document.querySelector('#vid');
       videoEl.setAttribute('rotation', {x: cameraRotation.x, y: 0, z: cameraRotation.z});
+      videoEl.setAttribute('position', {x: cameraEl.object3D.position.x, y: cameraEl.object3D.position.y, z: cameraEl.object3D.position.z});
     }
   });
   </script>
@@ -47,7 +48,7 @@ if(this.el.object3D.visible == true){
   <div style='position: fixed; top: 10px; width:inherit; text-align: center; z-index: 1;'>
     <a href="https://github.com/jeromeetienne/AR.js/" target="_blank">AR.js</a> - Check out the repository !
   </div>
-  <a-scene embedded artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' >
+  <a-scene rotation-listener embedded artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180' >
     <a-assets>
       <video id="vid" src="assets/asset.mp4" loop="true" crossorigin>
     </a-assets>
