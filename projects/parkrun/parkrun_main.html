@@ -99,19 +99,10 @@
     <a-assets>
       <video id="vid" src="assets/asset.mp4" loop="true" autoplay crossorigin></video>
     </a-assets>
-    <a-marker id="memarker" preset="hiro" vidhandler resize-video>
-      <a-plane position='0 0 -5' rotation="-90 0 0" material='opacity:1; src:#vid' size-adjuster></a-plane>
+    <a-marker preset="hiro">
+      <a-entity resize-video geometry="primitive: plane; width: 1; height: 1" material="src: #vid" position="0 0 0"></a-entity>
     </a-marker>
+    <a-entity camera></a-entity>
   </a-scene>
-  <script>
-    var marker = document.querySelector("#memarker");
-    var video = document.querySelector("#vid");
-    marker.addEventListener('markerFound', function() {
-      video.play();
-    });
-    marker.addEventListener('markerLost', function() {
-      video.pause();
-    });
-  </script>
 </body>
 </html>
