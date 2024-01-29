@@ -60,6 +60,35 @@
       }
     });
   </script>
+  <script>
+    AFRAME.registerComponent('resize-video', {
+      init: function () {
+        this.el.addEventListener('touchstart', this.onTouchStart.bind(this));
+        this.el.addEventListener('touchmove', this.onTouchMove.bind(this));
+        this.el.addEventListener('touchend', this.onTouchEnd.bind(this));
+        this.scaleFactor = 1;
+      },
+      onTouchStart: function (event) {
+        this.startDistance = this.getDistance(event.touches);
+      },
+      onTouchMove: function (event) {
+        if (event.touches.length === 2) {
+          var currentDistance = this.getDistance(event.touches);
+          var delta = currentDistance - this.startDistance;
+          this.scaleFactor += delta * 0.01; // Adjust the scaling factor based on the delta
+          this.el.object3D.scale.set(this.scaleFactor, this.scaleFactor, this.scaleFactor);
+        }
+      },
+      onTouchEnd: function () {
+        this.startDistance = null;
+      },
+      getDistance: function (touches) {
+        var dx = touches[0].clientX - touches[1].clientX;
+        var dy = touches[0].clientY - touches[1].clientY;
+        return Math.sqrt(dx * dx + dy * dy);
+      }
+    });
+  </script>
 </head>
 
 <body style='margin : 0px; overflow: hidden;'>
@@ -70,7 +99,7 @@
     <a-assets>
       <video id="vid" src="assets/asset.mp4" loop="true" autoplay crossorigin></video>
     </a-assets>
-    <a-marker id="memarker" preset="hiro" vidhandler>
+    <a-marker id="memarker" preset="hiro" vidhandler resize-video>
       <a-plane position='0 0 -5' rotation="-90 0 0" material='opacity:1; src:#vid' size-adjuster></a-plane>
     </a-marker>
   </a-scene>
