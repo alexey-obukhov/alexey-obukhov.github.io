@@ -1,0 +1,35 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color:black;
+  font size:2em;
+}
+cnv {
+    padding: 0;
+    //margin: auto;
+    display: block;
+    //width: 400px;
+}
+  
+  
+
+#container{
+  
+  margin: auto;
+  width:400px;
+  
+}
+
+
+
+
+button.bigB{
+  border-radius: 12px;
+    border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+}
