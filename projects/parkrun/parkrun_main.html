@@ -32,6 +32,7 @@
       }
     });
   </script>
+  <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
   <script>
     AFRAME.registerComponent('size-adjuster', {
       dependencies: ['marker'],
@@ -95,12 +96,38 @@
   <div style='position: fixed; top: 10px; width:inherit; text-align: center; z-index: 1;'>
     <a href="https://github.com/jeromeetienne/AR.js/" target="_blank"></a>
   </div>
-  <a-scene rotation-listener embedded artoolkit='sourceType: webcam; detectionMode: mono; maxDetectionRate: 30; canvasWidth: 240; canvasHeight: 180'>
+  <a-scene
+    arjs
+    embedded
+    renderer="logarithmicDepthBuffer: true;"
+    vr-mode-ui="enabled: false"
+    gesture-detector
+    id="scene"
+  >
     <a-assets>
-      <video id="vid" src="assets/asset.mp4" loop="true" autoplay crossorigin></video>
+      <a-asset-item
+        id="bowser"
+        src="https://cdn.glitch.com/06bd98b4-97ee-4c07-a546-fe39ca205034%2Fbowser.glb"
+      >
+      </a-asset-item>
     </a-assets>
-    <a-marker preset="hiro">
-      <a-entity resize-video geometry="primitive: plane; width: 1; height: 1" material="src: #vid" position="0 0 0"></a-entity>
+  
+    <a-marker
+      preset="hiro"
+      raycaster="objects: .clickable"
+      emitevents="true"
+      cursor="fuse: false; rayOrigin: mouse;"
+      id="markerA"
+    >
+      <a-entity
+        id="bowser-model"
+        gltf-model="#bowser"
+        position="0 0 0"
+        scale="0.05 0.05 0.05"
+        class="clickable"
+        gesture-handler
+      >
+      </a-entity>
     </a-marker>
     <a-entity camera></a-entity>
   </a-scene>
