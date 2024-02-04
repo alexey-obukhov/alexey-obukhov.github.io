@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>my rescent projects</title>
+  <title>My Recent Projects</title>
   <style>
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -12,7 +13,8 @@
       background-color: #f0f0f0;
       font-family: Arial, sans-serif;
     }
-    #startButton {
+    .startButton {
+      margin: 10px;
       padding: 20px;
       background-color: #007BFF;
       color: white;
@@ -21,12 +23,14 @@
       cursor: pointer;
       font-size: 1.2em;
     }
-    #startButton:hover {
+    .startButton:hover {
       background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <button id="startButton" onclick="location.href='parkrun/parkrun_main.html'">Start parkrun AR Experience</button>
+  <button class="startButton" onclick="location.href='ar-cam/index.html'">Start AR Experience</button>
+  <!-- <button class="startButton" onclick="location.href='parkrun/parkrun_main.html'">Start parkrun AR Experience</button> -->
+  <button class="startButton" onclick="location.href='deepfakes/deepfakes_main.html'">Start Deep Fakes Experience</button>
 </body>
 </html>
