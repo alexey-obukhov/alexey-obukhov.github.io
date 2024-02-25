@@ -1,5 +1,11 @@
 <?php
-
+// sudo apt install lsb-release ca-certificates apt-transport-https software-properties-common -y
+// sudo add-apt-repository ppa:ondrej/php
+// sudo apt install php8.1 php8.1-common php8.1-cli php8.1-mbstring php8.1-gd
+// sudo apt install composer
+// composer config platform.php 8.1
+// sudo service apache2 restart
+// php8.1 [your_webpage].php
 require 'vendor/autoload.php';
 
 use Endroid\QrCode\QrCode;
@@ -22,7 +28,7 @@ $qrCode->setErrorCorrectionLevel(new ErrorCorrectionLevel(ErrorCorrectionLevel::
 $qrCode->setForegroundColor(['r' => 0, 'g' => 0, 'b' => 0, 'a' => 0]);
 $qrCode->setBackgroundColor(['r' => 255, 'g' => 255, 'b' => 255, 'a' => 0]);
 $qrCode->setLogoPath(__DIR__.'/parkrun/parkrun_logo.png');
-$qrCode->setLogoSize(50, 50);
+$qrCode->setLogoSize(25, 25);
 
 // Create a new PNG writer
 $writer = new PngWriter();
