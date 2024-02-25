@@ -1,25 +1,32 @@
+<!--
+  The short URL https://goo.by/HVnsoj was created from the original URL:
+  https://player.vimeo.com/video/909813935?badge=0&autopause=0&player_id=0&app_id=58479
+-->
 <!DOCTYPE html>
 <html>
 <head>
   <style>
     #vimeo-player {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   </style>
   <script src="https://player.vimeo.com/api/player.js"></script>
 </head>
 <body>
-    <iframe id="vimeo-player" src="https://player.vimeo.com/video/909813935?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    <script>
-        var iframe = document.querySelector('#vimeo-player');
-        var player = new Vimeo.Player(iframe);
+  <iframe
+    id="vimeo-player" src="https://goo.by/HVnsoj" width="640" height="360"
+    frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+  </iframe>
+  <script>
+      var iframe = document.querySelector('#vimeo-player');
+      var player = new Vimeo.Player(iframe);
 
-        player.on('play', function() {
-            console.log('played the video!');
-        });
-    </script>
+      player.on('play', function() {
+          console.log('played the video!');
+      });
+  </script>
 </body>
 </html>
