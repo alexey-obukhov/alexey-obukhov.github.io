@@ -11,7 +11,7 @@ use Endroid\QrCode\Writer\PngWriter;
 // URL of your video in the cloud
 // $videoUrl = 'https://drive.google.com/file/d/1unMTrKUKFixVe61PP1fTbW9mMW_171aW/view?usp=sharing';
 // $videoUrl = 'https://drive.google.com/file/d/1unMTrKUKFixVe61PP1fTbW9mMW_171aW/preview';
-$videoUrl = 'https://alexey-obukhov.github.io/projects/drive_autoplay.html';
+$videoUrl = 'https://goo.by/CpGyhD';
 
 // Create a new QR code with the video URL
 $qrCode = new QrCode($videoUrl);
