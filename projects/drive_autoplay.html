@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Prießnitzgrund parkrun</title>
   <style>
-    .center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 80%;
-    }
-    iframe {
-      width: 100%;
-      height: auto;
+    #vimeo-player {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
   </style>
+  <script src="https://player.vimeo.com/api/player.js"></script>
 </head>
-<div class="center" style="width: 100%; padding:51.22% 0 0 0;position:relative;">
-  <iframe src="https://player.vimeo.com/video/909813935?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;" title="Prießnitzgrund parkrun"></iframe>
-</div>
-<script src="https://player.vimeo.com/api/player.js"></script>
+<body>
+    <iframe id="vimeo-player" src="https://player.vimeo.com/video/909813935?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <script>
+        var iframe = document.querySelector('#vimeo-player');
+        var player = new Vimeo.Player(iframe);
+
+        player.on('play', function() {
+            console.log('played the video!');
+        });
+    </script>
+</body>
 </html>
