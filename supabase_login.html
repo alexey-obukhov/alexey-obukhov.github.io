@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Account Setup Manual</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 2em;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007bff;
+        }
+        ol {
+            margin-left: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 10px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Supabase Account Setup Manual</h1>
+        <p>A Step-by-Step Guide to Getting Started with Supabase</p>
+    </header>
+    <div class="container">
+        <h2>Step 1: Creating a Supabase Account</h2>
+        <ol>
+            <li><strong>Visit the Supabase Website</strong>: Open your browser and navigate to app.supabase.com.</li>
+            <li><strong>Sign Up for an Account</strong>: Click on the "Sign Up" button. Provide your email address and create a password, or choose a social login option such as GitHub or Google.</li>
+            <li><strong>Confirm Your Email</strong>: If you signed up with an email, check your inbox for a confirmation email from Supabase and click the link to verify your account.</li>
+            <li><strong>Log In</strong>: After confirmation, return to app.supabase.com and sign in with your credentials or social login.</li>
+        </ol>
+        
+        <h2>Step 2: Setting Up a New Project</h2>
+        <ol>
+            <li><strong>Access the Dashboard</strong>: Once logged in, you’ll be directed to the Supabase dashboard.</li>
+            <li><strong>Create a New Project</strong>: Click on "New Project" or select an organization if prompted. Give your project a name, set a password for the database (optional, as Supabase can generate one), and choose a region closest to your users for optimal performance.</li>
+            <li><strong>Wait for Project Initialization</strong>: Supabase will set up your project, which may take a few moments. Once complete, you’ll see your project listed in the dashboard.</li>
+        </ol>
+        
+        <h2>Step 3: Obtaining the Anon Public Key and Project URL</h2>
+        <ol>
+            <li><strong>Navigate to API Settings</strong>: In your project dashboard, click on the "Settings" tab on the left-hand menu, then select "API" under the settings options.</li>
+            <li><strong>Locate Project URL</strong>: In the API settings page, find your "Project URL" listed at the top. It will look like https://<your-project-ref>.supabase.co.</li>
+            <li><strong>Retrieve Anon Public Key</strong>: Under "Project API keys," you’ll see the "Anon Key" listed as the public key. This key is safe for client-side use and is essential for connecting your application to Supabase services.</li>
+            <li><strong>Copy Credentials</strong>: Copy both the Project URL and Anon Key to a secure location, as you’ll need them to initialize the Supabase client in your application.</li>
+        </ol>
+        
+        <h2>Step 4: Additional Required Steps for Integration</h2>
+        <ol>
+            <li><strong>Enable Authentication (Optional)</strong>: If your application requires user login, go to the "Authentication" tab in the dashboard. Authentication is enabled by default for email logins, but you can configure social providers like Google or GitHub by adding OAuth credentials from the respective provider’s developer console.</li>
+            <li><strong>Set Up Database Tables</strong>: Navigate to the "Database" or "Table Editor" section to create tables for storing data. Define your schema based on your application’s needs, such as user data tables for a psychological assistant system.</li>
+            <li><strong>Configure Row-Level Security (RLS)</strong>: For data security, especially with sensitive information, enable RLS under the "Authentication" or "Database" settings to restrict access based on user roles or IDs.</li>
+            <li><strong>Store Credentials Securely</strong>: Use environment variables or a .env file in your project to store the Project URL and Anon Key, avoiding hardcoding them in your source code to prevent accidental exposure.</li>
+        </ol>
+        
+        <h2>Summary</h2>
+        <p>By following these steps, you can create a Supabase account, set up a project, and obtain critical credentials like the Anon Public Key and Project URL necessary for integrating Supabase into your application. Ensure you configure additional features like authentication and RLS for security, especially for sensitive use cases. For further details or advanced configurations, refer to the official Supabase documentation at supabase.com/docs.</p>
+    </div>
+    <footer>
+        <p>&copy; 2025 Supabase Setup Guide. All rights reserved.</p>
+    </footer>
+</body>
+</html>
